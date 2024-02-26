@@ -48,10 +48,22 @@ static void updateDiscordPresence()
         discordPresence.partySize = 1;
         discordPresence.partyMax = 6;
         discordPresence.partyPrivacy = DISCORD_PARTY_PUBLIC;
-        discordPresence.matchSecret = "xyzzy";
-        discordPresence.joinSecret = "join";
-        discordPresence.spectateSecret = "look";
+
+        // Buttons
+        discordPresence.buttons[0].active = 1;
+        discordPresence.buttons[0].label = "Click me!";
+        discordPresence.buttons[0].url = "https://google.com/";
+
+        discordPresence.buttons[1].active = 1;
+        discordPresence.buttons[1].label = "Dont click me!";
+        discordPresence.buttons[1].url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+
+        // You can't use both buttons and secrets
+        // discordPresence.matchSecret = "xyzzy";
+        // discordPresence.joinSecret = "join";
+        // discordPresence.spectateSecret = "look";
         discordPresence.instance = 0;
+
         Discord_UpdatePresence(&discordPresence);
     }
     else {

@@ -23,6 +23,12 @@
 extern "C" {
 #endif
 
+typedef struct DiscordPresenceButton {
+    uint8_t active; /* 0 or 1 */
+    const char* label;
+    const char* url;
+} DiscordButton;
+
 typedef struct DiscordRichPresence {
     const char* state;   /* max 128 bytes */
     const char* details; /* max 128 bytes */
@@ -40,6 +46,7 @@ typedef struct DiscordRichPresence {
     const char* joinSecret;     /* max 128 bytes */
     const char* spectateSecret; /* max 128 bytes */
     int8_t instance;
+    DiscordButton buttons[2];
 } DiscordRichPresence;
 
 typedef struct DiscordUser {

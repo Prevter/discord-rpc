@@ -157,6 +157,18 @@ size_t JsonWriteRichPresenceObj(char* dest,
                     WriteOptionalString(writer, "join", presence->joinSecret);
                     WriteOptionalString(writer, "spectate", presence->spectateSecret);
                 }
+                else if (presence->buttons[0].active || presence->buttons[1].active) {
+                    WriteArray buttons(writer, "buttons");
+                    for (int i = 0; i < 2; i++) {
+                        if (presence->buttons[i].active) {
+                            WriteObject button(writer);
+                            WriteKey(writer, "label");
+                            writer.String(presence->buttons[i].label);
+                            WriteKey(writer, "url");
+                            writer.String(presence->buttons[i].url);
+                        }
+                    }
+                }
 
                 writer.Key("instance");
                 writer.Bool(presence->instance != 0);
